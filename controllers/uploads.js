@@ -28,9 +28,31 @@ const upload = async(req, res = response) => {
 
 }
 
+async function updateImage(req = request, res = response){
+    
+    const {collection}=req.collection;
+
+    if (!req.files || Object.keys(req.files).length === 0) {
+        res.status(400).send('No files were uploaded.');
+        return;
+    }
+
+    try {
+        
+        // txt, md
+        // const nombre = await uploadFile( req.files, ['txt','md'], 'textos' );
+        const nombre = await uploadFile( req.files, undefined, 'images/'+collection );
+        res.json({ nombre });
+
+    } catch (msg) {
+        res.status(400).json({ msg });
+    }
+
+}
+
 
 
 
 module.exports = {
-    upload
+    upload,updateImage
 }
