@@ -41,7 +41,9 @@ async function updateImage(req = request, res = response){
         
         // txt, md
         // const nombre = await uploadFile( req.files, ['txt','md'], 'textos' );
-        const nombre = await uploadFile( req.files, undefined, 'images/'+collection );
+        const nombre = await uploadFile( req.files, undefined, collection );
+
+        
         res.json({ nombre });
 
     } catch (msg) {
